@@ -1,0 +1,67 @@
+<div class="containerr">
+  <app-header></app-header>
+  <section class="content-wrap">
+    <h2 style="margin-top: 70px; margin-left: 5%;">Todos nuestros productos</h2>
+    <hr style="margin-top: 50px;" />
+
+    <!-- Filtro -->
+    <h2 style="margin-top: 70px; margin-left: 5%; font-size: 24px; font-weight: bold;">Filtrar por...</h2>
+    <div style="display: flex; gap: 25px; margin-left: 5%; margin-top: 20px; flex-wrap: wrap; align-items: center; justify-content: flex-start;">
+      <div style="display: flex; flex-direction: column; width: 220px;">
+        <label for="nombreFiltro" style="margin-bottom: 5px; font-size: 16px; font-weight: 500;">Nombre</label>
+        <input id="nombreFiltro" type="text" placeholder="Nombre del producto" [(ngModel)]="nombreFiltro" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; min-width: 180px; font-size: 16px; transition: border-color 0.3s ease;" />
+      </div>
+      <div style="display: flex; flex-direction: column; width: 220px;">
+        <label for="precioMin" style="margin-bottom: 5px; font-size: 16px; font-weight: 500;">Precio Mínimo</label>
+        <input id="precioMin" type="number" placeholder="Precio mínimo" [(ngModel)]="precioMin" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; min-width: 180px; font-size: 16px; transition: border-color 0.3s ease;" />
+      </div>
+      <div style="display: flex; flex-direction: column; width: 220px;">
+        <label for="precioMax" style="margin-bottom: 5px; font-size: 16px; font-weight: 500;">Precio Máximo</label>
+        <input id="precioMax" type="number" placeholder="Precio máximo" [(ngModel)]="precioMax" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; min-width: 180px; font-size: 16px; transition: border-color 0.3s ease;" />
+      </div>
+      <div style="display: flex; flex-direction: column; width: 220px;">
+        <label for="categoriaSeleccionada" style="margin-bottom: 5px; font-size: 16px; font-weight: 500;">Categoría</label>
+        <select id="categoriaSeleccionada" [(ngModel)]="categoriaSeleccionada" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; min-width: 180px; font-size: 16px; transition: border-color 0.3s ease;">
+          <option value="">-- Todos --</option>
+          <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+        </select>
+      </div>
+      <button (click)="handleFilter()" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; transition: background-color 0.3s ease;">Filtrar</button>
+    </div>
+
+    <div *ngIf="loading" class="loading">Cargando productos...</div>
+    <div class="products" id="productos-container">
+      <ng-container *ngIf="error; else productosList">
+        <p style="color: red;">Error: {{ error }}</p>
+      </ng-container>
+      <ng-template #productosList>
+        <ng-container *ngIf="productos && productos.length > 0; else noProductos">
+          <div class="carts" *ngFor="let producto of productos">
+            <div>
+              <img [src]="producto.imagen" [alt]="producto.descripcion" />
+              <p>S/.<span>{{ producto.precioUnidad }}</span></p>
+            </div>
+            <p class="title">{{ producto.descripcion }}</p>
+            <button class="btn-agregar-carrito" (click)="handleAddToCart(producto)">Agregar</button>
+          </div>
+        </ng-container>
+        <ng-template #noProductos>
+          <p *ngIf="!loading">No hay productos disponibles.</p>
+        </ng-template>
+      </ng-template>
+    </div>
+
+    <div *ngIf="paginatedData && paginatedData.totalPages > 1" class="pagination-container">
+      <div class="pagination">
+        <button (click)="prevPage()" [disabled]="paginatedData.first" class="pagination-button" [ngClass]="{ 'disabled': paginatedData.first }">&laquo; Anterior</button>
+        <button *ngFor="let page of getPageNumbers()" (click)="goToPage(page)" class="pagination-button" [ngClass]="{ 'active': paginatedData.number === page }">{{ page + 1 }}</button>
+        <button (click)="nextPage()" [disabled]="paginatedData.last" class="pagination-button" [ngClass]="{ 'disabled': paginatedData.last }">Siguiente &raquo;</button>
+      </div>
+      <div class="pagination-info">
+        Mostrando {{ paginatedData.pageable.offset + 1 }} - {{ paginatedData.pageable.offset + paginatedData.numberOfElements }} de {{ paginatedData.totalElements }} productos
+      </div>
+    </div>
+  </section>
+  <div *ngIf="notification" class="notification">{{ notification }}</div>
+  <app-footer></app-footer>
+</div>
