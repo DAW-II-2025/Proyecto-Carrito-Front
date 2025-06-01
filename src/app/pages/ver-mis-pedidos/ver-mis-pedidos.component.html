@@ -1,0 +1,20 @@
+<div class="containerr">
+  <app-header></app-header>
+  <div class="container mt-5">
+    <h2 style="margin-bottom: 50px; margin-top: 100px;">Mis Pedidos</h2>
+    <p class="text-danger" *ngIf="error">{{ error }}</p>
+    <ng-container *ngIf="ventas.length === 0 && !error; else ventasList">
+      <p>No tienes pedidos aún.</p>
+    </ng-container>
+    <ng-template #ventasList>
+      <div class="card mb-3" *ngFor="let venta of ventas">
+        <div class="card-body">
+          <h5 class="card-title">Venta #{{ venta.idVenta }}</h5>
+          <p class="card-text">Monto: S/ {{ venta.monto }}</p>
+          <p class="card-text">Fecha: {{ venta.fechaVenta }}</p>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <app-footer></app-footer>
+</div>
