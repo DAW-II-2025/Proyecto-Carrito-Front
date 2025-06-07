@@ -3,88 +3,91 @@
     <div class="container-fluid">
       <!-- Logo -->
       <a routerLink="/" class="navbar-brand">
-        <img class="logo" src="assets/logo.jpg" alt="Logo" />
+        <img class="logo" src="assets/logo.jpg" />
       </a>
       <!-- Botón para colapsar el menú en pantallas pequeñas -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Menú de navegación -->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" routerLink="/" style="color: white">Inicio</a>
+            <a class="nav-link active" [routerLink]="['/']" routerLinkActive="active" style="color: white">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/productos" style="color: white">Productos</a>
+            <a class="nav-link" [routerLink]="['/productos']" routerLinkActive="active" style="color: white">Productos</a>
           </li>
+          <!-- Ajuste del dropdown de categorías para que funcione correctamente con Bootstrap -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white">Categorías</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Monitores</a></li>
-              <li><a class="dropdown-item" href="#">Periféricos</a></li>
-              <li><a class="dropdown-item" href="#">Componentes</a></li>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: white">
+              Categorías
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" [routerLink]="['/productos']" routerLinkActive="active">Monitores</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/productos']" routerLinkActive="active">Periféricos</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/productos']" routerLinkActive="active">Componentes</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/quienessomos" style="color: white">Quiénes somos</a>
+            <a class="nav-link" [routerLink]="['/quienessomos']" routerLinkActive="active" style="color: white">Quiénes somos</a>
           </li>
         </ul>
         <!-- Cuenta (lógica se implementa en el TS) -->
-        <div id="divCuenta" class="d-flex align-items-center" style="margin-right: 50px; cursor: pointer;" (click)="toggleAccountDropdown()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" style="color: white; margin-bottom: 10px; margin-right: 5px;">
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-          </svg>
-          <h6 style="color: white">Mi cuenta</h6>
-        </div>
-        <div *ngIf="isAccountDropdownVisible" id="divCuentaDetalles" style="position: absolute; top: 60px; right: 150px; z-index: 40;">
-          <div id="myDropdown" class="dropdown-content">
-            <a routerLink="/verMiInformacion">Ver mi información</a>
-            <a routerLink="/verMisPedidos">Ver mis pedidos</a>
-            <a routerLink="/login">Cerrar Sesión</a>
-          </div>
+        <div class="nav-item dropdown" id="divCuenta" style="margin-right: 50px; cursor: pointer;">
+          <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false" style="color: white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+              class="bi bi-person-circle" viewBox="0 0 16 16"
+              style="color: white; margin-bottom: 10px; margin-right: 5px;">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+              <path fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+            </svg>
+            Mi cuenta
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+            <li><a class="dropdown-item" routerLink="/verMiInformacion">Ver mi información</a></li>
+            <li><a class="dropdown-item" routerLink="/verMisPedidos">Ver mis pedidos</a></li>
+            <li><a class="dropdown-item" routerLink="/login">Cerrar Sesión</a></li>
+          </ul>
         </div>
         <!-- Carrito (lógica se implementa en el TS) -->
-        <div class="d-flex align-items-center" style="margin-right: 15px; cursor: pointer;" (click)="toggleCart()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16" style="color: white; margin-bottom: 10px;">
-            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+        <div id="divCarrito" class="d-flex align-items-center" style="margin-right: 15px; cursor: pointer;" (click)="toggleCart()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-cart-fill"
+            viewBox="0 0 16 16" style="color: white; margin-bottom: 10px;">
+            <path
+              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
           </svg>
           <p class="count-product">{{ cartItems.length }}</p>
           <h6 style="color: white">Carrito</h6>
         </div>
-        <div *ngIf="isCartVisible" class="cart-products" id="products-id">
-          <p class="close-btn" (click)="toggleCart()">X</p>
+        <div *ngIf="isCartVisible" id="divCarritoDetalles" style="position: absolute; top: 60px; right: 15px; z-index: 40; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 15px;">
           <h3>Mi carrito</h3>
           <ng-container *ngIf="cartItems.length > 0; else emptyCart">
             <div class="card-items" style="display: flex; flex-direction: column; gap: 20px;">
-              <div *ngFor="let item of cartItems" class="cart-item" style="display: flex; align-items: center; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff;">
+              <div *ngFor="let item of cartItems" class="cart-item" style="display: flex; align-items: center; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee;">
                 <img [src]="item.image" [alt]="item.name" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;" />
                 <div style="flex: 1; margin-left: 15px; display: flex; flex-direction: column; align-items: flex-start;">
                   <h5 style="font-size: 1.2rem; font-weight: 600;">{{ item.name }}</h5>
                   <p style="font-size: 1rem; color: #555;">Precio: S/.{{ item.price }}</p>
-                  <div class="quantity-controls" style="display: flex; align-items: center; gap: 10px; background-color: #f1f1f1; padding: 6px 12px; border-radius: 8px; width: fit-content; margin-top: 10px;">
-                    <button (click)="decreaseQuantity(item.id)" style="background-color: #e74c3c; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 1.2rem; cursor: pointer;">−</button>
-                    <span style="font-size: 1.1rem; font-weight: bold; min-width: 24px; text-align: center;">{{ item.quantity }}</span>
-                    <button (click)="increaseQuantity(item.id)" style="background-color: #2ecc71; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 1.2rem; cursor: pointer;">+</button>
+                  <div class="quantity-controls" style="display: flex; align-items: center; gap: 10px;">
+                    <button (click)="decreaseQuantity(item.id)" style="background-color: #e74c3c; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer;">−</button>
+                    <span style="font-size: 1.1rem; font-weight: bold;">{{ item.quantity }}</span>
+                    <button (click)="increaseQuantity(item.id)" style="background-color: #2ecc71; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer;">+</button>
                   </div>
                 </div>
-                <button class="btn-eliminar" (click)="removeFromCart(item.id)" style="background-color: #e74c3c; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-size: 1rem; cursor: pointer;">Eliminar</button>
+                <button (click)="removeFromCart(item.id)" style="background-color: #e74c3c; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Eliminar</button>
               </div>
             </div>
-            <h2>
-              Total: S/.
-              <strong class="price-total">{{ getTotal() }}</strong>
-            </h2>
-            <button class="btn btn-success" (click)="handleCheckout()" id="buy-button" [disabled]="cartItems.length === 0">Comprar</button>
-            <button class="btn btn-warning" (click)="clearCart()">Vaciar Carrito</button>
+            <h2>Total: S/.<strong>{{ getTotal() }}</strong></h2>
+            <button (click)="handleCheckout()" style="background-color: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Comprar</button>
+            <button (click)="clearCart()" style="background-color: #ffc107; color: black; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Vaciar Carrito</button>
           </ng-container>
           <ng-template #emptyCart>
-            <div class="carrito-vacio">
-              <span role="img" aria-label="empty" style="font-size: 2rem;">🛒</span>
-              <p style="font-size: 1.2rem; color: #666; margin-top: 10px;">¡Tu carrito está vacío por ahora!</p>
-              <p style="font-size: 0.95rem; color: #999;">Agrega algunos productos y aparecerán aquí.</p>
-            </div>
+            <p style="font-size: 1.2rem; color: #666;">¡Tu carrito está vacío por ahora!</p>
           </ng-template>
         </div>
       </div>
