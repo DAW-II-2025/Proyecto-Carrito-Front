@@ -14,8 +14,8 @@ export class QuienessomosComponent {
   desarrolladores = [
     { name: 'Jhon Quiñones', img: 'assets/hacker.jpg' },
     { name: 'Cristopher Ortega', img: 'assets/hacker.jpg' },
-    { name: 'Gianfranco Portillo', img: 'assets/hacker.jpg' },
-    { name: 'Moises Aguirre', img: 'assets/hacker.jpg' },
+    { name: 'Ian Bazán', img: 'assets/hacker.jpg' },
+    { name: 'Betsy Pantaleón', img: 'assets/hacker.jpg' },
     { name: 'Antony Trejo', img: 'assets/hacker.jpg' },
   ];
 }

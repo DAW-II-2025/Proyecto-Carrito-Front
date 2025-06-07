@@ -1,59 +1,49 @@
-# TempAngular
+# Proyecto Carrito Front Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
+Este proyecto fue generado utilizando [Angular CLI](https://github.com/angular/angular-cli) versión 19.2.14.
 
-## Development server
+## Configuración inicial
 
-To start a local development server, run:
+Para configurar el proyecto, sigue los siguientes pasos:
 
-```bash
-ng serve
-```
+1. Instala las dependencias necesarias:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+   ```bash
+   npm install
+   ```
 
-## Code scaffolding
+2. Inicia el servidor de desarrollo:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+   ```bash
+   npm start
+   ```
 
-```bash
-ng generate component component-name
-```
+3. Abre tu navegador y navega a:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+   ```
+   http://localhost:4200/
+   ```
 
-```bash
-ng generate --help
-```
+El servidor se ejecutará en el puerto `4200` por defecto.
 
-## Building
+## Pruebas
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Para ejecutar las pruebas unitarias, utiliza el siguiente comando:
 
 ```bash
-ng test
+npm test
 ```
 
-## Running end-to-end tests
+## Construcción
 
-For end-to-end (e2e) testing, run:
+Para construir el proyecto para producción, utiliza el siguiente comando:
 
 ```bash
-ng e2e
+npm run build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Los artefactos de construcción se almacenarán en el directorio `dist/`.
 
-## Additional Resources
+## Recursos adicionales
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Para más información sobre Angular CLI, visita la [documentación oficial](https://angular.dev/tools/cli).
