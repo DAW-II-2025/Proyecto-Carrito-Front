@@ -4,6 +4,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 interface Producto {
   descripcion: string;
@@ -67,7 +68,7 @@ export class ProductosComponent implements OnInit {
   async fetchProductos(page = this.currentPage, nombre?: string, categoria?: string) {
     this.loading = true;
     try {
-      let url = `https://backend-ecommerce-t9cg.onrender.com/api/Producto/list?page=${page}`;
+      let url = `${environment.apiUrl}/Producto/list?page=${page}`;
       if (nombre) url += `&nombre=${nombre}`;
       if (categoria) url += `&categoria=${categoria}`;
       const response = await fetch(url);

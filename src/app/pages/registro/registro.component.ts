@@ -3,6 +3,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-registro',
@@ -26,6 +27,9 @@ export class RegistroComponent {
     termsAccepted: false,
   };
 
+  error: string = '';
+  loading: boolean = false;
+
   async handleSubmit() {
     if (!this.cliente.termsAccepted) {
       alert('Debes aceptar los términos y condiciones.');
@@ -44,8 +48,10 @@ export class RegistroComponent {
       password: this.cliente.Password,
       estado: 'A'
     };
+    this.loading = true;
+    this.error = '';
     try {
-      const response = await fetch('https://backend-ecommerce-t9cg.onrender.com/api/Cliente/add', {
+      const response = await fetch(`${environment.apiUrl}/api/Cliente/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -68,10 +74,14 @@ export class RegistroComponent {
         };
       } else {
         const errorData = await response.json();
-        alert(`Error: ${errorData.message || 'No se pudo registrar'}`);
+        this.error = errorData.message || 'No se pudo registrar';
+        alert(`Error: ${this.error}`);
       }
     } catch (error: any) {
-      alert('Error al conectar con el servidor');
+      this.error = 'Error al conectar con el servidor';
+      alert(this.error);
+    } finally {
+      this.loading = false;
     }
   }
 }

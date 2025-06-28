@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 interface Venta {
   idVenta: number;
@@ -31,7 +32,7 @@ export class VerMisPedidosComponent implements OnInit {
         'Content-Type': 'application/json',
         ...(token ? { 'Authorization': `Bearer ${token}` } : {})
       };
-      const response = await fetch('https://backend-ecommerce-t9cg.onrender.com/api/Venta/mis-ventas', {
+      const response = await fetch(`${environment.apiUrl}/api/Venta/mis-ventas`, {
         method: 'GET',
         headers,
         credentials: 'include'

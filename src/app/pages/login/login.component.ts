@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent {
   async handleLogin() {
     this.error = '';
     try {
-      const response = await fetch('https://backend-ecommerce-t9cg.onrender.com/login', {
+      const response = await fetch(`${environment.apiUrl}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
