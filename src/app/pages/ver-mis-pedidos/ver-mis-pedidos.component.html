@@ -8,10 +8,24 @@
     </ng-container>
     <ng-template #ventasList>
       <div class="card mb-3" *ngFor="let venta of ventas">
-        <div class="card-body">
-          <h5 class="card-title">Venta #{{ venta.idVenta }}</h5>
-          <p class="card-text">Monto: S/ {{ venta.monto }}</p>
-          <p class="card-text">Fecha: {{ venta.fechaVenta }}</p>
+        <div class="card-body row align-items-center">
+          <div class="col-md-5">
+            <h5 class="card-title mb-2">Venta #{{ venta.idVenta }} <span class="badge bg-secondary">{{ venta.pedido?.estado || 'Sin estado' }}</span></h5>
+            <p class="mb-1"><strong>Monto total:</strong> S/ {{ venta.monto }}</p>
+            <p class="mb-1"><strong>Fecha:</strong> {{ venta.fechaVenta | date:'dd/MM/yyyy HH:mm' }}</p>
+            <p class="mb-1"><strong>Tipo de pago:</strong> {{ venta.pago?.metodo | titlecase }}</p>
+            <p class="mb-1"><strong>Estado de pago:</strong> {{ venta.pago?.estado | uppercase }}</p>
+          </div>
+          <div class="col-md-4">
+            <p class="mb-1"><strong>Descripción:</strong> {{ venta.detalles[0]?.producto?.descripcion }}</p>
+            <p class="mb-1"><strong>Categoría:</strong> {{ venta.detalles[0]?.producto?.categoria }}</p>
+            <p class="mb-1"><strong>Cantidad:</strong> {{ venta.detalles[0]?.cant }}</p>
+            <p class="mb-1"><strong>Precio unitario:</strong> S/ {{ venta.detalles[0]?.precioUnidad }}</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <img *ngIf="venta.detalles[0]?.producto?.imagen" [src]="venta.detalles[0].producto.imagen" alt="Imagen producto" style="max-width: 120px; max-height: 120px; border-radius: 8px; object-fit: cover; margin-bottom: 10px;">
+          </div>
+          
         </div>
       </div>
     </ng-template>

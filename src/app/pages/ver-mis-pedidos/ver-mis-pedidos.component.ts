@@ -32,7 +32,7 @@ export class VerMisPedidosComponent implements OnInit {
         'Content-Type': 'application/json',
         ...(token ? { 'Authorization': `Bearer ${token}` } : {})
       };
-      const response = await fetch(`${environment.apiUrl}/api/Venta/mis-ventas`, {
+      const response = await fetch(`${environment.apiUrl}/Venta/mis-ventas`, {
         method: 'GET',
         headers,
         credentials: 'include'
