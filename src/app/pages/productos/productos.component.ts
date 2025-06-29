@@ -4,6 +4,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 
 interface Producto {
@@ -59,10 +60,17 @@ export class ProductosComponent implements OnInit {
     'Routers', 'Camaras', 'Tablets', 'Consolas', 'Altavoces', 'Seguridad', 'Teléfonos', 'Teclados'
   ];
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.fetchProductos();
+    this.route.queryParams.subscribe(params => {
+      if (params['categoria']) {
+        this.categoriaSeleccionada = params['categoria'];
+        this.handleFilter(); // Ejecutar el filtro automáticamente si viene por query param
+      } else {
+        this.fetchProductos();
+      }
+    });
   }
 
   async fetchProductos(page = this.currentPage, nombre?: string, categoria?: string) {

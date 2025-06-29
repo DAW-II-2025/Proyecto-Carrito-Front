@@ -1,43 +1,52 @@
-<footer style="background-color: rgb(18, 33, 61); color: white; padding: 20px 0; margin-top: 200px;">
+<footer style="background-color: rgb(18, 33, 61); color: white; padding: 40px 0 20px 0; margin-top: 100px;">
   <div class="container">
     <div class="row">
       <!-- Marcas patrocinadoras -->
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h5>Marcas Patrocinadoras</h5>
         <ul style="list-style: none; padding: 0;">
           <li>Samsung</li>
           <li>Logitech</li>
           <li>Intel</li>
           <li>AMD</li>
+          <li>HP</li>
+          <li>Microsoft</li>
         </ul>
       </div>
-      <!-- Enlaces -->
-      <div class="col-md-4">
-        <h5>Enlaces</h5>
+      <!-- Enlaces útiles -->
+      <div class="col-md-3">
+        <h5>Enlaces útiles</h5>
         <ul style="list-style: none; padding: 0;">
-          <li>
-            <a routerLink="/quienessomos" style="color: white; text-decoration: none;">Quiénes somos</a>
-          </li>
-          <li>
-            <a routerLink="/productos" style="color: white; text-decoration: none;">Productos</a>
-          </li>
-          <li>
-            <a routerLink="/contacto" style="color: white; text-decoration: none;">Contáctanos</a>
-          </li>
+          <li><a [routerLink]="['/']" style="color: white; text-decoration: none;">Inicio</a></li>
+          <li><a [routerLink]="['/productos']" style="color: white; text-decoration: none;">Productos</a></li>
+          <li><a [routerLink]="['/comprar']" style="color: white; text-decoration: none;">Comprar</a></li>
+          <li><a [routerLink]="['/verMisPedidos']" style="color: white; text-decoration: none;">Mis pedidos</a></li>
+          <li><a [routerLink]="['/quienessomos']" style="color: white; text-decoration: none;">Quiénes somos</a></li>
+          <li><a [routerLink]="['/login']" style="color: white; text-decoration: none;">Iniciar sesión</a></li>
+          <li><a [routerLink]="['/registro']" style="color: white; text-decoration: none;">Registrarse</a></li>
         </ul>
+      </div>
+      <!-- Redes sociales -->
+      <div class="col-md-3">
+        <h5>Síguenos</h5>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <a href="https://facebook.com" target="_blank" rel="noopener" style="color: #fff; font-size: 1rem; display: flex; align-items: center;"><i class="bi bi-facebook" style="font-size: 1.3rem; margin-right: 6px;"></i> Facebook</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" style="color: #fff; font-size: 1rem; display: flex; align-items: center;"><i class="bi bi-instagram" style="font-size: 1.3rem; margin-right: 6px;"></i> Instagram</a>
+          <a href="https://wa.me/51981938493" target="_blank" rel="noopener" style="color: #fff; font-size: 1rem; display: flex; align-items: center;"><i class="bi bi-whatsapp" style="font-size: 1.3rem; margin-right: 6px;"></i> WhatsApp</a>
+        </div>
       </div>
       <!-- Contáctanos -->
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h5>Contáctanos</h5>
-        <p>Email: contacto&#64;tienda.com</p>
-        <p>Teléfono: +51 987 654 321</p>
+        <p>Email: <a href="mailto:contacto&#64;tienda.com" style="color: #ffd600; text-decoration: none;">contacto&#64;tienda.com</a></p>
+        <p>Teléfono: <a href="tel:+51987654321" style="color: #ffd600; text-decoration: none;">+51 987 654 321</a></p>
         <p>Dirección: Av. Tecnológica 123, Lima, Perú</p>
       </div>
     </div>
     <hr style="background-color: white; margin: 20px 0;" />
     <!-- Derechos reservados -->
     <div class="text-center">
-      <p style="margin: 0;">© 2025 Proyecto Integrador - Todos los derechos reservados.</p>
+      <p style="margin: 0; font-size: 0.95rem; color: #bbb;">© 2025 - Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>
