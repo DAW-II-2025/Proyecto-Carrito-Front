@@ -66,7 +66,7 @@ export class ComprarComponent implements OnInit {
           telefono: this.telefono,
         },
       };
-      const data = await apiFetch('/api/pago/crear-preferencia', {
+      const data = await apiFetch('/pago/crear-preferencia', {
         method: 'POST',
         body: JSON.stringify(body),
         credentials: 'include'
