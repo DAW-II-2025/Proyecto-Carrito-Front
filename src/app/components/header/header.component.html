@@ -26,9 +26,9 @@
               Categorías
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" [routerLink]="['/productos']" routerLinkActive="active">Monitores</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/productos']" routerLinkActive="active">Periféricos</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/productos']" routerLinkActive="active">Componentes</a></li>
+              <li *ngFor="let categoria of categorias">
+                <a class="dropdown-item" (click)="navigateToCategoria(categoria)">{{ categoria }}</a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

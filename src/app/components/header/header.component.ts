@@ -18,6 +18,11 @@ export class HeaderComponent implements OnInit {
   cartItems: CartItem[] = [];
   total = 0;
 
+  categorias: string[] = [
+    'Monitores', 'Televisores', 'Micrófonos', 'Impresoras', 'Almacenamiento',
+    'Routers', 'Camaras', 'Tablets', 'Consolas', 'Altavoces', 'Seguridad', 'Teléfonos', 'Teclados', 'Laptops', 'Componentes', 'Proyectores'
+  ];
+
   constructor(private router: Router, private cartService: CartService) {}
 
   ngOnInit() {
@@ -56,5 +61,9 @@ export class HeaderComponent implements OnInit {
 
   getTotal(): string {
     return this.total.toFixed(2);
+  }
+
+  navigateToCategoria(categoria: string) {
+    this.router.navigate(['/productos'], { queryParams: { categoria } });
   }
 }

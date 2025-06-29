@@ -3,11 +3,13 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../services/auth.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -16,7 +18,7 @@ export class LoginComponent {
   password = '';
   error = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   async handleLogin() {
     this.error = '';
@@ -34,8 +36,7 @@ export class LoginComponent {
       });
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('token', data.token);
-        // Aquí se podría integrar un AuthService para el estado global
+        this.authService.login(data.token, data.username);
         this.router.navigate(['/']);
       } else {
         this.error = 'Correo o contraseña incorrectos';
