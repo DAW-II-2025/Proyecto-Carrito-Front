@@ -52,7 +52,7 @@ export class RegistroComponent {
     this.loading = true;
     this.error = '';
     try {
-      const response = await fetch(`${environment.apiUrl}/api/Cliente/add`, {
+      const response = await fetch(`${environment.apiUrl}/Cliente/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
